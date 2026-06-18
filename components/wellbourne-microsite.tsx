@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { LiveChatWidget } from "@livechat/widget-react";
 import {
   motion,
   useMotionValue,
@@ -518,6 +519,9 @@ export function WellbourneMicrosite() {
   const [activeFaqMessage, setActiveFaqMessage] = useState(0);
   const [activeReview, setActiveReview] = useState(0);
   const [activeDayMode, setActiveDayMode] = useState("sunset");
+  const [chatVisibility, setChatVisibility] = useState<
+    "maximized" | "minimized"
+  >("minimized");
   const [isReviewPaused, setIsReviewPaused] = useState(false);
   const [isArticleRailPaused, setIsArticleRailPaused] = useState(false);
   const articleRailRef = useRef<HTMLDivElement>(null);
@@ -526,6 +530,7 @@ export function WellbourneMicrosite() {
   const ActiveDayIcon = activeDay.icon;
   const isDarkDayMode =
     activeDayMode === "pre-dawn" || activeDayMode === "night";
+  const openLiveChat = () => setChatVisibility("maximized");
   const shouldReduceMotion = useReducedMotion();
   const { scrollY, scrollYProgress } = useScroll();
   const progressScaleX = useSpring(scrollYProgress, {
@@ -720,12 +725,10 @@ export function WellbourneMicrosite() {
               FAQs
             </a>
           </div>
-          <Button asChild size="sm">
-            <a href={contactUrl} className="px-5">
+          <Button type="button" size="sm" onClick={openLiveChat} className="px-5">
               <span className="hidden sm:inline">Speak privately</span>
-              <span className="sm:hidden">Call</span>
+              <span className="sm:hidden">Chat</span>
               <MessageCircle className="h-4 w-4" />
-            </a>
           </Button>
         </nav>
       </motion.header>
@@ -752,10 +755,8 @@ export function WellbourneMicrosite() {
               welcoming setting.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button asChild>
-                <a href={contactUrl}>
-                  Speak to our team <ArrowRight className="h-5 w-5" />
-                </a>
+              <Button type="button" onClick={openLiveChat}>
+                Speak to our team <MessageCircle className="h-5 w-5" />
               </Button>
               <Button asChild variant="secondary">
                 <a href={mainSiteUrl}>
@@ -926,10 +927,12 @@ export function WellbourneMicrosite() {
             ))}
           </div>
           <motion.div {...fadeIn} className="mt-8 flex justify-center">
-            <Button asChild variant="secondary">
-              <a href={contactUrl}>
-                Ask a confidential question <ArrowRight className="h-5 w-5" />
-              </a>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={openLiveChat}
+            >
+              Ask a confidential question <MessageCircle className="h-5 w-5" />
             </Button>
           </motion.div>
         </div>
@@ -963,10 +966,8 @@ export function WellbourneMicrosite() {
                 </p>
               </div>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Button asChild>
-                  <a href={contactUrl}>
-                    Speak privately <ArrowRight className="h-5 w-5" />
-                  </a>
+                <Button type="button" onClick={openLiveChat}>
+                  Speak privately <MessageCircle className="h-5 w-5" />
                 </Button>
                 <div
                   className="flex items-center gap-1 text-brand"
@@ -1189,10 +1190,8 @@ export function WellbourneMicrosite() {
                 and supported beyond your residential stay.
               </p>
               <div className="mt-8">
-                <Button asChild>
-                  <a href={contactUrl}>
-                    Start a private enquiry <ArrowRight className="h-5 w-5" />
-                  </a>
+                <Button type="button" onClick={openLiveChat}>
+                  Start a private enquiry <MessageCircle className="h-5 w-5" />
                 </Button>
               </div>
             </motion.div>
@@ -1734,10 +1733,8 @@ export function WellbourneMicrosite() {
                 what the next step could look like.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Button asChild>
-                  <a href={contactUrl}>
-                    Contact the clinic <ArrowRight className="h-5 w-5" />
-                  </a>
+                <Button type="button" onClick={openLiveChat}>
+                  Contact the clinic <MessageCircle className="h-5 w-5" />
                 </Button>
                 <Button asChild variant="secondary">
                   <a href={mainSiteUrl}>
@@ -1796,6 +1793,23 @@ export function WellbourneMicrosite() {
                   </span>
                 </span>
               </a>
+              <button
+                type="button"
+                onClick={openLiveChat}
+                className="group flex w-full items-center gap-5 rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 text-left backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.12]"
+              >
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand text-white shadow-card transition group-hover:scale-105">
+                  <MessageCircle className="h-8 w-8" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold uppercase tracking-[0.16em] text-white/45">
+                    Live chat
+                  </span>
+                  <span className="mt-1 block text-2xl font-bold tracking-[-0.04em]">
+                    Speak to us now
+                  </span>
+                </span>
+              </button>
             </div>
           </div>
 
@@ -1833,6 +1847,14 @@ export function WellbourneMicrosite() {
           </div>
         </div>
       </footer>
+
+      <LiveChatWidget
+        license="19292596"
+        visibility={chatVisibility}
+        onVisibilityChanged={({ visibility }) =>
+          setChatVisibility(visibility === "maximized" ? "maximized" : "minimized")
+        }
+      />
     </main>
   );
 }
