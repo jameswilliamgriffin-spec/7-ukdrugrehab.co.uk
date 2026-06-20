@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/warwickshire",
+        destination: "/west-midlands",
+        permanent: true,
+      },
+    ];
+  },
   webpack: (config) => {
     config.watchOptions = {
       ...config.watchOptions,
