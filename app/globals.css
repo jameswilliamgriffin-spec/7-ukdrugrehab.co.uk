@@ -47,6 +47,60 @@ a {
   background-size: 42px 42px;
 }
 
+.hero-atmosphere {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 32% 18%, rgba(241, 152, 133, 0.58), transparent 28%),
+    radial-gradient(circle at 14% 42%, rgba(245, 103, 48, 0.84), transparent 31%),
+    radial-gradient(circle at 72% 10%, rgba(126, 111, 255, 0.52), transparent 34%),
+    radial-gradient(circle at 90% 34%, rgba(41, 100, 173, 0.46), transparent 29%),
+    linear-gradient(135deg, #170d14 0%, #40161d 38%, #171b34 68%, #080b12 100%);
+}
+
+.hero-gradient-drift {
+  background:
+    radial-gradient(circle at 34% 20%, rgba(241, 152, 133, 0.68), transparent 27%),
+    radial-gradient(circle at 17% 56%, rgba(255, 98, 20, 0.82), transparent 28%),
+    radial-gradient(circle at 46% 30%, rgba(255, 180, 150, 0.38), transparent 24%),
+    radial-gradient(circle at 72% 17%, rgba(129, 117, 255, 0.55), transparent 32%),
+    radial-gradient(circle at 91% 39%, rgba(36, 94, 172, 0.46), transparent 28%),
+    linear-gradient(135deg, #190d14 0%, #431419 39%, #151b3c 72%, #07080d 100%);
+  filter: saturate(1.08);
+  animation: hero-gradient-drift 16s ease-in-out infinite alternate;
+}
+
+.hero-gradient-drift::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 34%),
+    radial-gradient(circle at 57% 59%, rgba(255, 255, 255, 0.12), transparent 23%);
+  mix-blend-mode: screen;
+}
+
+.hero-noise {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.65) 0 1px, transparent 1px),
+    radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1px);
+  background-size: 7px 7px, 11px 11px;
+}
+
+.hero-float-card {
+  will-change: transform;
+}
+
+@keyframes hero-gradient-drift {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: saturate(1.05) hue-rotate(0deg);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-1.5%, 1%, 0);
+    filter: saturate(1.18) hue-rotate(-7deg);
+  }
+}
+
 .premium-spotlight {
   --spotlight-x: 50%;
   --spotlight-y: 50%;

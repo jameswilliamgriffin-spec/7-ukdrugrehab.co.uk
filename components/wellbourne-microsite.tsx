@@ -45,6 +45,47 @@ const reveal = {
   transition: { duration: 0.7, ease },
 };
 
+const heroTrustMarkers = [
+  { icon: LockKeyhole, title: "100% confidential", text: "Private from your first call" },
+  { icon: BadgeCheck, title: "CQC registered", text: "Standards you can check" },
+  { icon: Clock3, title: "Here every day", text: "Talk when you're ready" },
+];
+
+const heroVisuals = [
+  {
+    src: "/images/wellbourne/talking-recovery.png",
+    alt: "A calm therapeutic conversation at The Wellbourne Clinic",
+    className:
+      "left-[5%] top-[16%] h-[56%] w-[58%] rounded-[2rem] shadow-editorial lg:left-[3%] lg:top-[14%]",
+    imageClassName: "object-cover object-center",
+    delay: 0.1,
+  },
+  {
+    src: "/images/wellbourne/talking-over-tea.png",
+    alt: "Female-led support conversation in a relaxed residential setting",
+    className:
+      "right-[3%] top-[7%] h-[33%] w-[36%] rounded-[1.65rem] shadow-[0_24px_70px_rgba(17,24,39,0.26)]",
+    imageClassName: "object-cover object-center",
+    delay: 0.18,
+  },
+  {
+    src: "/images/wellbourne/therapy-chairs.png",
+    alt: "Private therapy chairs in a quiet treatment room",
+    className:
+      "bottom-[7%] right-[9%] h-[38%] w-[44%] rounded-[1.8rem] shadow-[0_26px_78px_rgba(17,24,39,0.28)]",
+    imageClassName: "object-cover object-center",
+    delay: 0.26,
+  },
+  {
+    src: "/images/wellbourne/book-and-tea.png",
+    alt: "Tea and reading in a calm recovery space",
+    className:
+      "bottom-[13%] left-[14%] h-[25%] w-[31%] rounded-[1.35rem] shadow-[0_20px_58px_rgba(17,24,39,0.22)]",
+    imageClassName: "object-cover object-center",
+    delay: 0.34,
+  },
+];
+
 const treatmentSteps = [
   {
     number: "01",
@@ -84,7 +125,7 @@ const locations = [
     city: "Coventry",
     region: "West Midlands",
     href: "/coventry",
-    image: "/images/wellbourne/talking.png",
+    image: "/images/wellbourne/talking-over-tea.png",
     note: "The Wellbourne Clinic is around 15 minutes from Coventry — the closest major city to the clinic.",
   },
   {
@@ -105,7 +146,7 @@ const locations = [
     city: "West Midlands",
     region: "Regional overview",
     href: "/west-midlands",
-    image: "/images/wellbourne/coastal-walk.png",
+    image: "/images/wellbourne/grass-with-path.png",
     note: "An overview of drug rehab across the region and where The Wellbourne Clinic sits within it.",
   },
 ];
@@ -263,50 +304,68 @@ export function WellbourneMicrosite() {
       </header>
 
       {/* ── Hero ── */}
-      <section id="top" className="relative overflow-hidden px-5 pb-20 pt-20 md:px-8 md:pb-28 md:pt-24">
+      <section
+        id="top"
+        className="hero-atmosphere relative overflow-hidden px-5 pb-14 pt-8 text-white md:px-8 md:pb-18 md:pt-10"
+      >
         <div className="absolute inset-0 -z-10">
-          <div className="soft-grid absolute inset-0 opacity-40" />
-          <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-brand/10 blur-3xl" />
+          <div className="hero-gradient-drift absolute inset-0" />
+          <div className="hero-noise absolute inset-0 opacity-[0.18]" />
+          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/45 to-transparent" />
         </div>
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+        <div className="mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl items-center gap-12 py-6 lg:grid-cols-[0.94fr_1.06fr] lg:gap-10 lg:py-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease }}
+            className="relative z-10 max-w-3xl"
           >
-            <SectionLabel>Private drug rehab — West Midlands</SectionLabel>
-            <h1 className="text-balance font-heading text-[2.8rem] font-semibold leading-[1] tracking-[-0.052em] text-graphite sm:text-[3.5rem] md:text-[5.5rem] md:tracking-[-0.06em]">
-              Drug Rehab in the West Midlands.
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/12 px-4 py-2 text-sm font-semibold text-white shadow-sm backdrop-blur-xl">
+              <Sparkles size={15} className="text-brand" />
+              Private drug rehab — West Midlands
+            </p>
+            <h1 className="max-w-[760px] text-balance font-heading text-[2.65rem] font-semibold leading-[0.98] tracking-normal text-white sm:text-[3.45rem] md:text-[4.85rem]">
+              <span className="block">Drug Rehab in the</span>
+              <span className="block">West Midlands.</span>
             </h1>
-            <p className="mt-7 max-w-xl text-pretty text-xl leading-9 text-muted">
+            <p className="mt-7 max-w-2xl text-pretty text-lg leading-8 text-white/78 md:text-xl md:leading-9">
               Private residential drug rehab and detox, based in Kenilworth — serving Birmingham,
               Coventry, Warwickshire, Solihull and the surrounding region.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-wrap items-center gap-3 text-sm font-semibold text-white/76">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/10 px-4 py-2 backdrop-blur-xl">
+                <MapPin size={15} className="text-brand" />
+                43 Waverley Rd, Kenilworth CV8 1JL
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/10 px-4 py-2 backdrop-blur-xl">
+                <Check size={15} className="text-brand" />
+                In the heart of the West Midlands
+              </span>
+            </div>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <button
                 type="button"
                 onClick={openChat}
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-brand px-7 py-4 text-base font-bold text-white shadow-card transition duration-300 hover:-translate-y-0.5 hover:bg-[#e88975] hover:shadow-soft"
+                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-white px-7 py-4 text-base font-extrabold text-graphite shadow-[0_20px_56px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1 hover:bg-brand hover:text-white hover:shadow-[0_26px_70px_rgba(241,152,133,0.32)]"
               >
                 Talk confidentially <MessageCircle size={18} />
               </button>
               <a
                 href="#locations"
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-graphite/10 bg-white/80 px-7 py-4 text-base font-bold text-graphite backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-brand/50 hover:bg-white"
+                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-white/28 bg-white/10 px-7 py-4 text-base font-bold text-white shadow-sm backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-white/50 hover:bg-white/18"
               >
                 Find your location <ArrowRight size={18} />
               </a>
             </div>
             <dl className="mt-12 grid max-w-2xl gap-3 sm:grid-cols-3">
-              {[
-                { icon: LockKeyhole, title: "100% confidential", text: "Private from your first call" },
-                { icon: BadgeCheck, title: "CQC registered", text: "Standards you can check" },
-                { icon: Clock3, title: "Here every day", text: "Talk when you're ready" },
-              ].map((item) => (
-                <div key={item.title} className="rounded-2xl border border-white/80 bg-white/60 p-5 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white">
+              {heroTrustMarkers.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-white/20 bg-white/[0.095] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.14)] backdrop-blur-2xl transition duration-300 hover:-translate-y-1 hover:bg-white/[0.14]"
+                >
                   <item.icon className="mb-4 h-5 w-5 text-brand" />
-                  <dt className="text-base font-semibold tracking-[-0.02em]">{item.title}</dt>
-                  <dd className="mt-1 text-sm leading-6 text-muted">{item.text}</dd>
+                  <dt className="text-base font-bold tracking-normal text-white">{item.title}</dt>
+                  <dd className="mt-1 text-sm leading-6 text-white/67">{item.text}</dd>
                 </div>
               ))}
             </dl>
@@ -316,28 +375,67 @@ export function WellbourneMicrosite() {
             initial={{ opacity: 0, scale: 0.97, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="relative min-h-[480px] overflow-hidden rounded-[2rem] shadow-soft"
+            className="relative z-10 min-h-[560px] sm:min-h-[640px] lg:min-h-[720px]"
+            aria-label="The Wellbourne Clinic treatment and recovery imagery"
           >
-            <Image
-              src="/images/wellbourne/talking-recovery.png"
-              alt="Two people in an honest conversation about recovery — The Wellbourne Clinic"
-              fill
-              className="object-cover object-center"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0)_40%,rgba(17,24,39,0.72)_100%)]" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/65">
-                The Wellbourne Clinic
-              </p>
-              <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
-                43 Waverley Rd, Kenilworth CV8 1JL
-              </p>
-              <p className="mt-2 flex items-center gap-2 text-sm text-white/70">
-                <MapPin size={14} /> In the heart of the West Midlands
-              </p>
-            </div>
+            <div className="absolute left-[6%] top-[8%] h-24 w-24 rounded-full bg-brand/45 blur-3xl" />
+            <div className="absolute bottom-[14%] right-[5%] h-36 w-36 rounded-full bg-sky-300/25 blur-3xl" />
+            {heroVisuals.map((visual) => (
+              <motion.div
+                key={visual.src}
+                className={`hero-float-card absolute overflow-hidden border border-white/35 bg-white/12 p-1.5 backdrop-blur-md transition duration-500 hover:-translate-y-2 hover:rotate-0 hover:border-white/55 hover:bg-white/18 ${visual.className}`}
+                initial={{ opacity: 0, y: 26, rotate: -2 }}
+                animate={{ opacity: 1, y: [0, -9, 0], rotate: [0, 1.1, 0] }}
+                transition={{
+                  opacity: { duration: 0.55, delay: visual.delay, ease },
+                  y: { duration: 7.5, delay: visual.delay, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 8.5, delay: visual.delay, repeat: Infinity, ease: "easeInOut" },
+                }}
+                whileHover={{ y: -14, rotate: 0, scale: 1.015 }}
+              >
+                <div className="relative h-full overflow-hidden rounded-[inherit]">
+                  <Image
+                    src={visual.src}
+                    alt={visual.alt}
+                    fill
+                    className={visual.imageClassName}
+                    sizes="(max-width: 768px) 68vw, (max-width: 1200px) 44vw, 34vw"
+                    priority={visual.src.includes("talking-recovery")}
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0)_45%,rgba(17,24,39,0.32)_100%)]" />
+                </div>
+              </motion.div>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.48, ease }}
+              className="absolute bottom-0 left-1/2 w-[86%] max-w-[520px] -translate-x-1/2 rounded-[1.45rem] border border-white bg-white p-4 text-graphite shadow-[0_28px_76px_rgba(0,0,0,0.28)] lg:left-auto lg:right-[4%] lg:w-[58%] lg:translate-x-0"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-brand-ink">
+                    The Wellbourne Clinic
+                  </p>
+                  <p className="mt-1 text-lg font-bold leading-6 tracking-normal">
+                    Private rehab, detox and therapy in Kenilworth
+                  </p>
+                </div>
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-graphite text-white">
+                  <ShieldCheck size={19} />
+                </span>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-graphite/72">
+                <span className="inline-flex min-w-0 items-center gap-2 whitespace-nowrap">
+                  <Check size={15} className="text-brand" />
+                  Residential care
+                </span>
+                <span className="inline-flex min-w-0 items-center gap-2 whitespace-nowrap">
+                  <Check size={15} className="text-brand" />
+                  Family-accessible location
+                </span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -557,8 +655,8 @@ export function WellbourneMicrosite() {
               >
                 <Link
                   href={loc.href}
-                  className="group relative block overflow-hidden rounded-[2rem] shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft"
-                  style={{ minHeight: "300px" }}
+                  className="group relative block overflow-hidden rounded-[2rem] border border-white/75 shadow-[0_18px_48px_rgba(30,24,18,0.18)] ring-1 ring-graphite/10 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_68px_rgba(30,24,18,0.24)] hover:ring-brand/35"
+                  style={{ minHeight: "320px" }}
                 >
                   <Image
                     src={loc.image}
@@ -567,13 +665,14 @@ export function WellbourneMicrosite() {
                     className="object-cover transition duration-500 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0.06)_0%,rgba(17,24,39,0.76)_100%)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0.18)_0%,rgba(17,24,39,0.52)_48%,rgba(17,24,39,0.88)_100%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.22),transparent_28%)] opacity-70" />
                   <div className="absolute inset-0 flex flex-col justify-between p-7">
                     <div className="flex items-center justify-between">
-                      <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur">
+                      <span className="rounded-full border border-white/35 bg-white/30 px-3 py-1 text-xs font-bold text-white shadow-sm backdrop-blur-md">
                         {loc.region}
                       </span>
-                      <span className="grid h-8 w-8 place-items-center rounded-full bg-white/20 text-white backdrop-blur transition duration-300 group-hover:bg-brand">
+                      <span className="grid h-9 w-9 place-items-center rounded-full border border-white/30 bg-white/25 text-white shadow-sm backdrop-blur-md transition duration-300 group-hover:bg-brand">
                         <ArrowRight size={14} />
                       </span>
                     </div>
