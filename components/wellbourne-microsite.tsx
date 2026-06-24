@@ -375,42 +375,44 @@ export function WellbourneMicrosite() {
             initial={{ opacity: 0, scale: 0.97, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="relative z-10 min-h-[560px] sm:min-h-[640px] lg:min-h-[720px]"
+            className="relative z-10 lg:min-h-[720px]"
             aria-label="The Wellbourne Clinic treatment and recovery imagery"
           >
-            <div className="absolute left-[6%] top-[8%] h-24 w-24 rounded-full bg-brand/45 blur-3xl" />
-            <div className="absolute bottom-[14%] right-[5%] h-36 w-36 rounded-full bg-sky-300/25 blur-3xl" />
-            {heroVisuals.map((visual) => (
-              <motion.div
-                key={visual.src}
-                className={`hero-float-card absolute overflow-hidden border border-white/35 bg-white/12 p-1.5 backdrop-blur-md transition duration-500 hover:-translate-y-2 hover:rotate-0 hover:border-white/55 hover:bg-white/18 ${visual.className}`}
-                initial={{ opacity: 0, y: 26, rotate: -2 }}
-                animate={{ opacity: 1, y: [0, -9, 0], rotate: [0, 1.1, 0] }}
-                transition={{
-                  opacity: { duration: 0.55, delay: visual.delay, ease },
-                  y: { duration: 7.5, delay: visual.delay, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 8.5, delay: visual.delay, repeat: Infinity, ease: "easeInOut" },
-                }}
-                whileHover={{ y: -14, rotate: 0, scale: 1.015 }}
-              >
-                <div className="relative h-full overflow-hidden rounded-[inherit]">
-                  <Image
-                    src={visual.src}
-                    alt={visual.alt}
-                    fill
-                    className={visual.imageClassName}
-                    sizes="(max-width: 768px) 68vw, (max-width: 1200px) 44vw, 34vw"
-                    priority={visual.src.includes("talking-recovery")}
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0)_45%,rgba(17,24,39,0.32)_100%)]" />
-                </div>
-              </motion.div>
-            ))}
+            <div className="relative min-h-[430px] sm:min-h-[560px] lg:absolute lg:inset-0 lg:min-h-0">
+              <div className="absolute left-[6%] top-[8%] h-24 w-24 rounded-full bg-brand/45 blur-3xl" />
+              <div className="absolute bottom-[14%] right-[5%] h-36 w-36 rounded-full bg-sky-300/25 blur-3xl" />
+              {heroVisuals.map((visual) => (
+                <motion.div
+                  key={visual.src}
+                  className={`hero-float-card absolute overflow-hidden border border-white/35 bg-white/12 p-1.5 backdrop-blur-md transition duration-500 hover:-translate-y-2 hover:rotate-0 hover:border-white/55 hover:bg-white/18 ${visual.className}`}
+                  initial={{ opacity: 0, y: 26, rotate: -2 }}
+                  animate={{ opacity: 1, y: [0, -9, 0], rotate: [0, 1.1, 0] }}
+                  transition={{
+                    opacity: { duration: 0.55, delay: visual.delay, ease },
+                    y: { duration: 7.5, delay: visual.delay, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 8.5, delay: visual.delay, repeat: Infinity, ease: "easeInOut" },
+                  }}
+                  whileHover={{ y: -14, rotate: 0, scale: 1.015 }}
+                >
+                  <div className="relative h-full overflow-hidden rounded-[inherit]">
+                    <Image
+                      src={visual.src}
+                      alt={visual.alt}
+                      fill
+                      className={visual.imageClassName}
+                      sizes="(max-width: 768px) 68vw, (max-width: 1200px) 44vw, 34vw"
+                      priority={visual.src.includes("talking-recovery")}
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0)_45%,rgba(17,24,39,0.32)_100%)]" />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.48, ease }}
-              className="absolute bottom-0 left-1/2 w-[86%] max-w-[520px] -translate-x-1/2 rounded-[1.45rem] border border-white bg-white p-4 text-graphite shadow-[0_28px_76px_rgba(0,0,0,0.28)] lg:left-auto lg:right-[4%] lg:w-[58%] lg:translate-x-0"
+              className="relative z-10 mx-auto mt-4 w-full max-w-[520px] rounded-[1.45rem] border border-white bg-white p-4 text-graphite shadow-[0_28px_76px_rgba(0,0,0,0.28)] sm:w-[88%] lg:absolute lg:bottom-0 lg:left-auto lg:right-[4%] lg:mt-0 lg:w-[58%] lg:translate-x-0"
             >
               <div className="flex items-center justify-between gap-4">
                 <div>
